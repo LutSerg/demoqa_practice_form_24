@@ -1,22 +1,24 @@
 package ru.neriado.test;
 
 
-import com.codeborne.selenide.Condition;
-import org.junit.jupiter.api.BeforeAll;
-import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DemoqaWebTest extends TestBase {
-    
+
 
     @Test
     void demoqaWebTest() {
+
         open("/automation-practice-form");
+
+        Selenide.executeJavaScript("$('#fixedban').remove()");
+        Selenide.executeJavaScript("$('footer').remove()");
+
         $("#firstName").setValue("Alan");
         $("#lastName").setValue("Wake");
         $("#userEmail").setValue("AlWake@mail.com");
@@ -26,8 +28,8 @@ public class DemoqaWebTest extends TestBase {
         $(".react-datepicker__month-select").selectOption(4);
         $(".react-datepicker__year-select").selectOption("1990");
         $(".react-datepicker__day--017").click();
-        $("#subjectsInput").setValue("a");
-        $("#react-select-2-option-2").click();
+        $("#subjectsInput").click();
+        $("#subjectsInput").setValue("Arts").pressEnter();
         $("#hobbiesWrapper").$(byText("Reading")).click();
         $("#uploadPicture").uploadFromClasspath("Rattus.jpg");
         $("#currentAddress").setValue("some text for this object");
