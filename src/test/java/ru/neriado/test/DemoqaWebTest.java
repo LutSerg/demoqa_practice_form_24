@@ -38,4 +38,27 @@ public class DemoqaWebTest extends TestBase {
                 .checkResult("Address", "some text for this object")
                 .checkResult("State and City", "Rajasthan Jaiselmer");
     }
+
+    @Test
+    void demoqaMinimalFormWebTest() {
+        registrationPage.openPage()
+                .setFirstName("Alan")
+                .setLastName("Wake")
+                .setGender()
+                .setPhoneNumber("8975461258")
+                .pressSubmit()
+                .modalWindow("Thanks for submitting the form")
+                .checkResult("Student Name", "Alan Wake")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "8975461258");
+    }
+
+    @Test
+    void negativeStudentFormModalWindowTest() {
+        registrationPage.openPage()
+                .setLastName("Wake")
+                .setGender()
+                .pressSubmit()
+                .negativeModalWindow();
+    }
 }

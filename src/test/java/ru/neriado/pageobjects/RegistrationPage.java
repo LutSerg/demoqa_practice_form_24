@@ -129,4 +129,10 @@ public class RegistrationPage {
         checkModalComponent.checkFullFormResult(key, value);
         return this;
     }
+
+    public RegistrationPage negativeModalWindow() {
+        checkModalComponent.negativeFormCheck();
+
+        return this;
+    }
 }
