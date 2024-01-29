@@ -2,7 +2,7 @@ package ru.neriado.test;
 
 
 import org.junit.jupiter.api.Test;
-import ru.neriado.pageobjects.RegistrationPage;
+import ru.neriado.pages.RegistrationPage;
 
 public class DemoqaWebTest extends TestBase {
 
@@ -13,12 +13,13 @@ public class DemoqaWebTest extends TestBase {
     void demoqaFullFormWebTest() {
 
         registrationPage.openPage()
+                .closeBanner()
                 .setFirstName("Alan")
                 .setLastName("Wake")
                 .setEmail("AlWake@mail.com")
-                .setGender()
+                .setGender("Male")
                 .setPhoneNumber("8975461258")
-                .setDateOfBirth("17", 4, "1990")
+                .setDateOfBirth("17", "April", "1990")
                 .setSubject("Arts")
                 .setHobie("Reading")
                 .uploadPicture("Rattus.jpg")
@@ -31,7 +32,7 @@ public class DemoqaWebTest extends TestBase {
                 .checkResult("Student Email", "AlWake@mail.com")
                 .checkResult("Gender", "Male")
                 .checkResult("Mobile", "8975461258")
-                .checkResult("Date of Birth", "17 May,1990")
+                .checkResult("Date of Birth", "17 April,1990")
                 .checkResult("Subjects", "Arts")
                 .checkResult("Hobbies", "Reading")
                 .checkResult("Picture", "Rattus.jpg")
@@ -44,7 +45,7 @@ public class DemoqaWebTest extends TestBase {
         registrationPage.openPage()
                 .setFirstName("Alan")
                 .setLastName("Wake")
-                .setGender()
+                .setGender("Male")
                 .setPhoneNumber("8975461258")
                 .pressSubmit()
                 .modalWindow("Thanks for submitting the form")
@@ -57,7 +58,7 @@ public class DemoqaWebTest extends TestBase {
     void negativeStudentFormModalWindowTest() {
         registrationPage.openPage()
                 .setLastName("Wake")
-                .setGender()
+                .setGender("Female")
                 .pressSubmit()
                 .negativeModalWindow();
     }

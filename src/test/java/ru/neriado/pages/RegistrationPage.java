@@ -1,9 +1,9 @@
-package ru.neriado.pageobjects;
+package ru.neriado.pages;
 
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import ru.neriado.pageobjects.components.CalendarComponent;
-import ru.neriado.pageobjects.components.CheckModalComponent;
+import ru.neriado.pages.components.CalendarComponent;
+import ru.neriado.pages.components.CheckModalComponent;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -17,7 +17,7 @@ public class RegistrationPage {
     private SelenideElement firstName = $("#firstName");
     private SelenideElement lastName = $("#lastName");
     private SelenideElement email = $("#userEmail");
-    private SelenideElement gender = $("[for='gender-radio-1']");
+    private SelenideElement gender = $("#genterWrapper");
     private SelenideElement phoneNumber = $("#userNumber");
     private SelenideElement calendarInput = $("#dateOfBirthInput");
     private SelenideElement selectSubject = $("#subjectsInput");
@@ -30,6 +30,12 @@ public class RegistrationPage {
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+
+
+        return this;
+    }
+
+    public RegistrationPage closeBanner(){
         Selenide.executeJavaScript("$('#fixedban').remove()");
         Selenide.executeJavaScript("$('footer').remove()");
 
@@ -54,8 +60,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setGender() {
-        gender.click();
+    public RegistrationPage setGender(String value) {
+        gender.$(byText(value)).click();
 
         return this;
     }
@@ -66,7 +72,7 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage setDateOfBirth(String day, Integer month, String year) {
+    public RegistrationPage setDateOfBirth(String day, String month, String year) {
         calendarInput.click();
         calendarComponent.setDate(day, month, year);
 

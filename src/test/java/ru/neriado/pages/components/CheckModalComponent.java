@@ -1,4 +1,4 @@
-package ru.neriado.pageobjects.components;
+package ru.neriado.pages.components;
 
 import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;

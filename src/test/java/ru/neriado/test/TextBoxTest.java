@@ -1,7 +1,7 @@
 package ru.neriado.test;
 
 import org.junit.jupiter.api.Test;
-import ru.neriado.pageobjects.TextBoxPage;
+import ru.neriado.pages.TextBoxPage;
 
 public class TextBoxTest extends TestBase {
 

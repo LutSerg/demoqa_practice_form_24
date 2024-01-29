@@ -1,4 +1,4 @@
-package ru.neriado.pageobjects;
+package ru.neriado.pages;
 
 import com.codeborne.selenide.SelenideElement;
 
