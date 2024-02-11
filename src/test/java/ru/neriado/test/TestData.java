@@ -11,14 +11,14 @@ public class TestData {
     String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             email = faker.internet().emailAddress(),
-            gender = getRandomGender(),
+            gender = getGender(),
             phoneNumber = faker.phoneNumber().subscriberNumber(10),
             setHobbies = getHobbie(),
             setSubject = getSubject(),
             address = faker.address().fullAddress(),
-            dayOfBirth = getDay(),
+            dayOfBirth = String.valueOf(getBirthDay()),
             monthOfBirth = getMonth(),
-            yearOfBirth = getYear(),
+            yearOfBirth = String.valueOf(getBirthyear()),
             photo = "Rattus.jpg",
             state = getState(),
             city = getCity(state),
@@ -34,11 +34,18 @@ public class TestData {
         int index = getRandomInt(0, genders.length - 1);
 
         return genders[index];
+    }
 
+    private String getGender(){
+        return faker.options().option("Male", "Female", "Other");
+    }
+
+    private Integer getBirthDay(){
+        return faker.number().numberBetween(1,28);
     }
 
     public static String getDay() {
-        return String.valueOf(getRandomInt(1, 28));
+        return String.valueOf(getRandomInt(1,28));
     }
 
     private String getSubject() {
@@ -69,7 +76,10 @@ public class TestData {
 
     public static String getYear() {
         return String.valueOf(getRandomInt(1900, 2050));
+    }
 
+    private Integer getBirthyear() {
+        return faker.number().numberBetween(1950, 2050);
     }
 
     private String getHobbie() {
